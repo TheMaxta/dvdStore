@@ -1,9 +1,18 @@
 package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class DvdDriver {
     public static void main(String[] args) {
+
+        // *************** | File I/o  | ********************
+        readFile reader = new readFile();
+        writeFile writer = new writeFile();
+        ArrayList instanceArray;
+        //****************************************
+
+
         Scanner input = new Scanner(System.in);
         DvdStore client;
         String passwordEntered = "";
@@ -34,8 +43,17 @@ public class DvdDriver {
             }
         }
 
-
         client = new DvdStore(isManager);
+
+        // *************** | Read from file and set store vals  | ********************
+
+        reader.readArray();
+        instanceArray = reader.returnUserArray();
+        client.fetchData(instanceArray);
+
+        //****************************************
+
+
         first = client.getFirstName();
         last = client.getLastName();
 
@@ -46,7 +64,7 @@ public class DvdDriver {
             client.addUser(first, last);
         }
 
-        client.addStdComputers(5);
+        client.addStdComputers(2);
 
 
         while(!(client_response.equals("q") || client_response.equals("Q")))
@@ -55,5 +73,16 @@ public class DvdDriver {
             client_response = input.next();
             client.selectAction(client_response);
         }
+
+
+        //when program closes
+        // *************** | get Updated data from Store, and write to File  | ********************
+
+        instanceArray = client.returnData();
+        writer.getArray(instanceArray);
+        writer.writeArray();
+
+        //********************************************************************************
+
     }
 }

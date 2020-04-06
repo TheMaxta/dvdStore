@@ -1,8 +1,9 @@
 package com.company;
+import java.io.Serializable;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Dvd {
+public class Dvd implements Serializable {
     public String movie_title;
     public String release_date;
     public String lead_actor;

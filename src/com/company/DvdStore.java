@@ -2,6 +2,7 @@ package com.company;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,9 +29,19 @@ public class DvdStore {
     }
 
     public void addStdComputers(int num){
-        for (int i = 0; i < num; i++) {
-            stock.add(new Dvd("Jaws3DD", "01/22/2019", "john"));
+        if (stock.size() == 0) {
+            for (int i = 0; i < num; i++) {
+                stock.add(new Dvd("Jaws3DD", "01/22/2019", "john"));
+            }
         }
+    }
+
+    public void fetchData(ArrayList<Dvd> data){
+        stock = data;
+    }
+
+    public ArrayList<Dvd> returnData(){
+        return stock;
     }
 
     public void addDvd(){
